@@ -18,6 +18,7 @@ var domImgs = document.getElementById('imgs');
 
 function genImage(src) {
     var img = new Image();
+    console.log(src)
     img.src = src;
     img.style.height = '100px';
     img.style.float = 'left';
