@@ -1,5 +1,3 @@
-console.log(111);
-
 this.addEventListener('install', function(event) {
     console.log('sw.js install');
     event.waitUntil(

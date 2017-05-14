@@ -1,8 +1,8 @@
 {
     "updateTime": 1494733756329,
     "list": [
-        { "type": "img", "url": "/demo/service-workers/images/1.jpg" },
-        { "type": "url", "url": "/demo/service-workers/images/2.jpg" },
+        { "type": "img", "url": "images/1.jpg" },
+        { "type": "url", "url": "images/2.jpg" },
         { "type": "img", "url": "https://img30.360buyimg.com/da/jfs/t4558/9/4745689150/148433/f16cf6c8/59127ee9N57636ad1.jpg" }
     ]
 }
