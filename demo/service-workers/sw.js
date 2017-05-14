@@ -27,7 +27,6 @@ this.addEventListener('fetch', function(event) {
                 //如果有资源没有匹配(比如child.html里面的跨域图片),就先发请求访问,然后缓存一份
                 console.log('url not match;' + event.request.url);
                 return fetch(event.request).then(function(response) {
-                    console.log(response);
                     caches.open('v1').then(function(cache) {
                         cache.put(event.request, response);
                     });

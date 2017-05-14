@@ -18,7 +18,6 @@ var domImgs = document.getElementById('imgs');
 
 function genImage(src) {
     var img = new Image();
-    console.log(src)
     img.src = src;
     img.style.height = '100px';
     img.style.float = 'left';
@@ -35,6 +34,7 @@ document.getElementById('add').addEventListener('click', function() {
                     break;
                 case 'url':
                     get(item.url, 'blob').then(function(imgData) {
+                        console.log(imgData)
                         genImage(URL.createObjectURL(imgData));
                     })
                     break;
