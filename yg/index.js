@@ -246,7 +246,7 @@ var check = function(){
     var type = form.type.value;
     switch(type){
         case '1':
-        $(form.money).attr('placeHolder', '金额');
+        $(form.money).attr('placeHolder', '金额(请输入1000的整数倍)');
             break;
         case '2':
             var cash = rep.getCash(date);
@@ -322,7 +322,7 @@ $('#build').on('click', function(){
 });
 $('#reset').on('click', function(){
     rep.reset();
-    $(form.money).attr('placeHolder', '金额');
+    $(form.money).attr('placeHolder', '金额(请输入1000的整数倍)');
     form.type.value = '1';
     $('#records').empty();
 })
