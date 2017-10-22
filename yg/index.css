@@ -1,0 +1,45 @@
+
+.clearfix:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.clearfix{
+    zoom:1;
+}
+input[type="text"],
+input[type="tel"]{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    outline: none;
+    transition: none;
+    -webkit-transition: none;
+    -webkit-appearance: none;
+}
+
+body{
+    padding-top: 20px;
+}
+.root{
+    margin: 0 20px;
+}
+.con-item{
+    margin-bottom: 15px;
+}
+.con-item label{
+    width: 40px;
+}
+.con-item .form-control{
+    display: inline-block;
+    width: calc(100% - 60px);
+}
+.opt{
+    text-align: right;
+}
+.con-item.checkbox label{
+    padding-left:0;
+    width: auto;
+}
+#records{
+    margin: 10px 20px 0;
+}

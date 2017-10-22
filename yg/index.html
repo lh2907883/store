@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" lang="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>收益计算报表</title>
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/datetimepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <form id="form" class="root clearfix">
+        <div class="con-item">
+            <label>日期</label>
+            <input name="date" type="text" class="form-control form_datetime" placeholder="日期">
+        </div>
+        <div class="con-item">
+            <label>金额</label>
+            <input name="money" type="tel" class="form-control" placeholder="金额">
+        </div>
+        <div class="con-item checkbox">
+            <label>
+                <input name="type" type="radio" checked value="1"> 追加本金
+            </label>
+            <label>
+                <input name="type" type="radio" value="2"> 投入可提现金额(复投)
+            </label>
+            <label>
+                <input name="type" type="radio" value="3"> 提现
+            </label>
+        </div>
+        <div class="opt">
+            <button id="reset" type="button" class="btn btn-default">重置</button>
+            <button id="build" type="button" class="btn btn-primary">生成报表</button>
+        </div>
+    </form>
+    <div id="records"></div>
+
+    <div id="chart"></div>
+
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <script src="lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="lib/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="lib/highcharts.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
