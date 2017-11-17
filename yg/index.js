@@ -126,7 +126,7 @@ Report.prototype = {
         if(this.piece.length > 0){
             var arr = this.piece.sort(function(item1, item2){
                 if(item1.date === item2.date){
-                    return 0;
+                    return item2.cash - item1.cash;
                 }
                 else{
                     return item1.date < item2.date ? -1 : 1;
