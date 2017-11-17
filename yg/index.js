@@ -150,6 +150,19 @@ Report.prototype = {
                     sumBenefit: Math.round(sumBenefit),
                     sumCash: Math.round(sumCash)
                 };
+                //提现过后,还要把之前月份的可提现金额减掉
+                if(item.cash < 0){
+                    var cash = -item.cash;
+                    var n = 0;
+                    for(var j=data.length-1; j>=0; j--){
+                        if(data[j].sumCash > cash){
+                            data[j].sumCash = cash;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
             }
             data.push(cur);
             // console.log(data);
