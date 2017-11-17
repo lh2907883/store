@@ -147,8 +147,8 @@ Report.prototype = {
                 cur = {
                     date: item.date,
                     sumCost: sumCost,
-                    sumBenefit: sumBenefit,
-                    sumCash: sumCash
+                    sumBenefit: Math.round(sumBenefit),
+                    sumCash: Math.round(sumCash)
                 };
             }
             data.push(cur);
@@ -286,7 +286,7 @@ $('#build').on('click', function(){
     var money = +form.money.value;
     var type = form.type.value;
     if(date && money){
-        if(!Number.isInteger(money / 1000.0)){
+        if(type !== '3' && !Number.isInteger(money / 1000.0)){
             alert('金额必须是1000的整数倍');
             form.money.value = '';
             form.money.focus();
@@ -307,7 +307,7 @@ $('#build').on('click', function(){
             case '3':
                 var cash = $(form.money).data('cash');
                 if(cash < money){
-                    alert(`最多只能投入${cash}元`);
+                    alert(`最多只能提现${cash}元`);
                     return;  
                 }
                 rep.tixian(date, money);
