@@ -28,15 +28,24 @@
             border: none;
             cursor: pointer;
         }
-        .result{
+        .desc{
             margin-left: 20px;
             vertical-align: middle;
+            font-size: 12px;
+            font-weight: 500;
+            color: #666;
         }
         .task1{
             display: flex;
         }
         .box{
             position: relative;
+        }
+        .box:before,
+        .box:after {
+            content: " ";
+            display: table;
+            clear: both;
         }
         .point{
             display: block;
@@ -45,15 +54,20 @@
             border-radius: 50%;
             background: #4a92fa;
             cursor: pointer;
+            line-height: 50px;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
         }
         .point.red{
             background: #fa6666;
         }
         .step1{
-            width: 550px;
-            margin: -20px;
+            width: 530px;
+            margin: -20px 50px -20px -20px;
         }
-        .step1{
+        .step2{
             width: 400px;
             margin: -20px;
         }
@@ -69,13 +83,13 @@
             left: 65px;
             width: 390px;
             height: 130px;
-            border: 1px dashed #c9c9c9;
+            border: 2px dashed #c9c9c9;
         }
         .step1 .lines:before, 
         .step1 .lines:after {
             content: '';
             position: absolute;
-            border-left: 1px dashed #c9c9c9;
+            border-left: 2px dashed #c9c9c9;
             width: 0px;
             height: 130px;
             top: 0;
@@ -83,6 +97,68 @@
         }
         .step1 .lines:after{
             left: 260px;
+        }
+        .step2 .lines{
+            position: absolute;
+            z-index: -1;
+            top: 65px;
+            left: 65px;
+            width: 260px;
+            height: 260px;
+            border: 2px dashed #c9c9c9;
+        }
+        .step2 .lines:before{
+            content: '';
+            position: absolute;
+            top: 130px;
+            left: 0px;
+            width: 260px;
+            height: 0;
+            border-top: 2px dashed #c9c9c9;
+        }
+        .step2 .lines:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 130px;
+            width: 0;
+            height: 260px;
+            border-left: 2px dashed #c9c9c9;
+        }
+
+        .task2{
+            position: relative;
+            margin: 0 20px;
+            width: 650px;
+            height: 600px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .circle{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 2px dashed #c9c9c9;
+        }
+        .c1{
+            top: 0;
+            left: 0;
+        }
+        .c2{
+            top: 0;
+            left: 200px;
+        }
+        .c3{
+            top: 174px;
+            left: 100px;
+        }
+        .task2 .point{
+            position: absolute;
+        }
+        .task2 .text{
+            position: absolute;
+            font-size: 16px;
         }
     </style>
     <script src="./jq.js"></script>
@@ -94,34 +170,62 @@
             <h3>第一步<span class="sub-title">先对照游戏设置初始状态(点击下图中的圆点, 切换蓝红状态)</span></h3>
             <div class="box step1">
                 <div class="lines"></div>
-                <div id="t11p4" class="point"></div>
-                <div id="t11p3" class="point"></div>
-                <div id="t11p2" class="point"></div>
-                <div id="t11p1" class="point"></div>
-                <div id="t11p8" class="point"></div>
-                <div id="t11p7" class="point"></div>
-                <div id="t11p6" class="point"></div>
-                <div id="t11p5" class="point"></div>
+                <div id="t11p4" class="point">4</div>
+                <div id="t11p3" class="point">3</div>
+                <div id="t11p2" class="point">2</div>
+                <div id="t11p1" class="point">1</div>
+                <div id="t11p8" class="point">8</div>
+                <div id="t11p7" class="point">7</div>
+                <div id="t11p6" class="point">6</div>
+                <div id="t11p5" class="point">5</div>
             </div>
-            <button class="btn" id="btn1-1">最优解</button> <span class="result" id="task1-1"></span>
+            <button class="btn" id="btn1-1">最优解</button><span class="desc">点击"最优解", 按照提示进入游戏依次设置每一个点, 领取最高奖励</span>
+            <p id="task1-1"></p>
         </div>
         <div>
             <h3>第二步<span class="sub-title">先对照游戏设置初始状态(点击下图中的圆点, 切换蓝红状态)</span></h3>
             <div class="box step2">
                 <div class="lines"></div>
-                <div id="t12p3" class="point"></div>
-                <div id="t12p2" class="point"></div>
-                <div id="t12p1" class="point"></div>
-                <div id="t12p6" class="point"></div>
-                <div id="t12p5" class="point"></div>
-                <div id="t12p4" class="point"></div>
-                <div id="t12p9" class="point"></div>
-                <div id="t12p8" class="point"></div>
-                <div id="t12p7" class="point"></div>
+                <div id="t12p3" class="point">3</div>
+                <div id="t12p2" class="point">2</div>
+                <div id="t12p1" class="point">1</div>
+                <div id="t12p6" class="point">6</div>
+                <div id="t12p5" class="point">5</div>
+                <div id="t12p4" class="point">4</div>
+                <div id="t12p9" class="point">9</div>
+                <div id="t12p8" class="point">8</div>
+                <div id="t12p7" class="point">7</div>
             </div>
-            <button class="btn" id="btn1-2">最优解</button> <span class="result" id="task1-2"></span>
+            <button class="btn" id="btn1-2">最优解</button><span class="desc">点击"最优解", 按照提示进入游戏依次设置每一个点, 领取最高奖励</span>
+            <p id="task1-2"></p>
         </div>
     </div>
+    <h2>X机构的机密委托 - 圆圈破解</h2>
+    <div class="task2">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+        <div id="t2p1" class="point" style="left:80px;top:0;"></div>
+        <div id="t2p2" class="point" style="left:280px;top:0;"></div>
+        <div id="t2p3" class="point" style="left:480px;top:0;"></div>
+        <div id="t2p4" class="point" style="left:-20px;top:178px;"></div>
+        <div id="t2p5" class="point" style="left:180px;top:178px;"></div>
+        <div id="t2p6" class="point" style="left:380px;top:178px;"></div>
+        <div id="t2p7" class="point" style="left:580px;top:178px;"></div>
+        <div id="t2p8" class="point" style="left:80px;top:356px;"></div>
+        <div id="t2p9" class="point" style="left:280px;top:356px;"></div>
+        <div id="t2p10" class="point" style="left:480px;top:356px;"></div>
+        <div id="t2p11" class="point" style="left:180px;top:535px;"></div>
+        <div id="t2p12" class="point" style="left:380px;top:535px;"></div>
+        <span class="text" style="top:100px;left:100px;">圈1</span>
+        <span class="text" style="top:500px;left:300px;">圈2</span>
+        <span class="text" style="top:100px;left:500px;">圈3</span>
+    </div>
+    <div style="display: inline-block;">
+        <button class="btn" id="btn2">最优解</button><span class="desc">点击"最优解", 按照提示进入游戏依次设置每一个点, 领取最高奖励</span>
+        <p id="task2"></p>
+    </div>
+
     <!-- source:<input id="source" type="text"  /><br>
     row:<input id="row" type="text"  /><br>
     col:<input id="col" type="text"  /><br>
@@ -206,7 +310,147 @@
                 run: run
             }
         }
+        function task2(){
+            function rotate(value, isClockwise){
+                var arr = value.split('');
+                if (isClockwise){
+                    var tNode = value[5];
+                    arr.splice(5, 1);
+                    arr.unshift(tNode);
+                }
+                else{
+                    var tNode = value[0];
+                    arr.splice(0, 1);
+                    arr.push(tNode);
+                }
+                return arr.join('');
+            }
+            function pointChange(value, changeList){
+                var arr = value.split('');
+                for(var i = 0; i < changeList.length; i++){
+                    var change = changeList[i];
+                    arr[change.index] = change.value;
+                }
+                return arr.join('');
+            }
+            function rotateRule(whichOne){
+                switch(whichOne){
+                    case 1:
+                        return function(isClockwise){
+                            return (value) => {
+                                var arr = value.split('-');
+                                var vs = [];
+                                var v = rotate(arr[0], isClockwise);
+                                vs.push(v);
+                                vs.push(pointChange(arr[1], [
+                                    {index: 1, value: v[2]}, 
+                                    {index: 5, value: v[4]}
+                                ]));
+                                vs.push(pointChange(arr[2], [
+                                    {index: 0, value: v[5]}, 
+                                    {index: 2, value: v[3]}
+                                ]));
+                                return vs.join('-');
+                            }
+                        }
+                    case 2:
+                        return function(isClockwise){
+                            return (value) => {
+                                var arr = value.split('-');
+                                var vs = [];
+                                var v = rotate(arr[1], isClockwise);
+                                vs.push(pointChange(arr[0], [
+                                    {index: 2, value: v[1]}, 
+                                    {index: 4, value: v[5]}
+                                ]));
+                                vs.push(v);
+                                vs.push(pointChange(arr[2], [
+                                    {index: 1, value: v[0]}, 
+                                    {index: 3, value: v[4]}
+                                ]));
+                                return vs.join('-');
+                            }
+                        }
+                    case 3:
+                        return function(isClockwise){
+                            return (value) => {
+                                var arr = value.split('-');
+                                var vs = [];
+                                var v = rotate(arr[2], isClockwise);
+                                vs.push(pointChange(arr[0], [
+                                    {index: 3, value: v[2]}, 
+                                    {index: 5, value: v[0]}
+                                ]));
+                                vs.push(pointChange(arr[1], [
+                                    {index: 0, value: v[1]}, 
+                                    {index: 4, value: v[3]}
+                                ]));
+                                vs.push(v);
+                                return vs.join('-');
+                            }
+                        }
+                }
+            }
+            function initRule(){
+                var rules = [
+                    {name: '圈3,顺', func: rotateRule(1)(false)},
+                    {name: '圈3,逆', func: rotateRule(1)(true)},
+                    {name: '圈2,顺', func: rotateRule(2)(false)},
+                    {name: '圈2,逆', func: rotateRule(2)(true)},
+                    {name: '圈1,顺', func: rotateRule(3)(false)},
+                    {name: '圈1,逆', func: rotateRule(3)(true)}
+                ]
+                return rules;
+            }
+            function run(target){
+                var rules = initRule();
+                var done = '001111-110011-111100';
+                var cache = {
+                    [done]: {parent: null}
+                };
+                return step(cache, [done], target, rules);
+            }
+            function step(cache, values, target, rules){
+                var nextStepValues = [];
+                for(let index = 0; index < values.length; index++){
+                    let value = values[index];
+                    for (let i = 0; i < rules.length; i++){
+                        var rule = rules[i];
+                        var next = rule.func(value);
+                        if (!cache[next]){
+                            cache[next] = {
+                                parent: value,
+                                step: rule.name
+                            }
+                            nextStepValues.push(next);
+                            if (next === target){
+                                console.log('找到了');
+                                var chains = [];
+                                print(chains, cache, target);
+                                return chains.join('<br>');
+                            }
+                        }
+                    }
+                }
+                
+                if (nextStepValues.length > 0){
+                    return step(cache, nextStepValues, target, rules)
+                }
+            }
+            function print(chains, cache, target){
+                var node = cache[target];
+                if (node.parent){
+                    chains.push(node.step);
+                    print(chains, cache, node.parent)
+                }
+            }
+            return {
+                run: run
+            }
+        }
+        
         var task1 = task1();
+        var task2 = task2();
         $('.point').on('click', function(){
             $(this).toggleClass('red');
         })
@@ -218,16 +462,41 @@
                 $('#task1-1').text(result);
             }
         })
-        
-        document.getElementById('go').addEventListener('click', function(){
-            var x = +document.getElementById('row').value.trim();
-            var y = +document.getElementById('col').value.trim();
-            var source = document.getElementById('source').value.trim();
-            var result = run(x, y, source);
-            document.getElementById('result').innerHTML = result;
+        $('#btn1-2').on('click', function(){
+            var res = [];
+            for(var i = 1; i <= 9; i++){
+                res.push($(`#t12p${i}`).hasClass('red') ? '1' : '0');
+                var result = task1.run(3, 3, res.join(''));
+                $('#task1-2').text(result);
+            }
         })
-
-        // run(3, 3, '001101100')
+        $('#btn2').on('click', function(){
+            var res = [
+                $('#t2p3').hasClass('red') ? '1' : '0',
+                $('#t2p7').hasClass('red') ? '1' : '0',
+                $('#t2p10').hasClass('red') ? '1' : '0',
+                $('#t2p9').hasClass('red') ? '1' : '0',
+                $('#t2p5').hasClass('red') ? '1' : '0',
+                $('#t2p2').hasClass('red') ? '1' : '0',
+                '-',
+                $('#t2p6').hasClass('red') ? '1' : '0',
+                $('#t2p10').hasClass('red') ? '1' : '0',
+                $('#t2p12').hasClass('red') ? '1' : '0',
+                $('#t2p11').hasClass('red') ? '1' : '0',
+                $('#t2p8').hasClass('red') ? '1' : '0',
+                $('#t2p5').hasClass('red') ? '1' : '0',
+                '-',
+                $('#t2p2').hasClass('red') ? '1' : '0',
+                $('#t2p6').hasClass('red') ? '1' : '0',
+                $('#t2p9').hasClass('red') ? '1' : '0',
+                $('#t2p8').hasClass('red') ? '1' : '0',
+                $('#t2p4').hasClass('red') ? '1' : '0',
+                $('#t2p1').hasClass('red') ? '1' : '0',
+            ];
+            console.log(res.join(''))
+            var result = task2.run(res.join(''));
+            $('#task2').html(result);
+        })
     </script>
 </body>
 </html>
