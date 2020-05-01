@@ -508,13 +508,8 @@
                 $('#t2p4').hasClass('red') ? '1' : '0',
                 $('#t2p1').hasClass('red') ? '1' : '0',
             ];
-            if (res.filter(it => it === '1').length !==6){
-                alert(`'X机构的机密委托 - 圆圈破解', 先要保证有6个红点.`);
-            }
-            else{
-                var result = task2.run(res.join(''));
-                $('#task2').html(result);
-            }
+            var result = task2.run(res.join(''));
+            $('#task2').html(result);
         })
     </script>
 </body>
