@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    source:<input id="source" type="text"  /><br>
+    <button id="go">go</button>
+    <p id="result"></p>
+    <script>
+        function rotate(value, isClockwise){
+            var arr = value.split('');
+            if (isClockwise){
+                var tNode = value[5];
+                arr.splice(5, 1);
+                arr.unshift(tNode);
+            }
+            else{
+                var tNode = value[0];
+                arr.splice(0, 1);
+                arr.push(tNode);
+            }
+            return arr.join('');
+        }
+        function pointChange(value, changeList){
+            var arr = value.split('');
+            for(var i = 0; i < changeList.length; i++){
+                var change = changeList[i];
+                arr[change.index] = change.value;
+            }
+            return arr.join('');
+        }
+        function rotateRule(whichOne){
+            switch(whichOne){
+                case 1:
+                    return function(isClockwise){
+                        return (value) => {
+                            var arr = value.split('-');
+                            var vs = [];
+                            var v = rotate(arr[0], isClockwise);
+                            vs.push(v);
+                            vs.push(pointChange(arr[1], [
+                                {index: 1, value: v[2]}, 
+                                {index: 5, value: v[4]}
+                            ]));
+                            vs.push(pointChange(arr[2], [
+                                {index: 0, value: v[5]}, 
+                                {index: 2, value: v[3]}
+                            ]));
+                            return vs.join('-');
+                        }
+                    }
+                case 2:
+                    return function(isClockwise){
+                        return (value) => {
+                            var arr = value.split('-');
+                            var vs = [];
+                            var v = rotate(arr[1], isClockwise);
+                            vs.push(pointChange(arr[0], [
+                                {index: 2, value: v[1]}, 
+                                {index: 4, value: v[5]}
+                            ]));
+                            vs.push(v);
+                            vs.push(pointChange(arr[2], [
+                                {index: 1, value: v[0]}, 
+                                {index: 3, value: v[4]}
+                            ]));
+                            return vs.join('-');
+                        }
+                    }
+                case 3:
+                    return function(isClockwise){
+                        return (value) => {
+                            var arr = value.split('-');
+                            var vs = [];
+                            var v = rotate(arr[2], isClockwise);
+                            vs.push(pointChange(arr[0], [
+                                {index: 3, value: v[2]}, 
+                                {index: 5, value: v[0]}
+                            ]));
+                            vs.push(pointChange(arr[1], [
+                                {index: 0, value: v[1]}, 
+                                {index: 4, value: v[3]}
+                            ]));
+                            vs.push(v);
+                            return vs.join('-');
+                        }
+                    }
+            }
+        }
+        function initRule(){
+            var rules = [
+                {name: '3,顺', func: rotateRule(1)(false)},
+                {name: '3,逆', func: rotateRule(1)(true)},
+                {name: '2,顺', func: rotateRule(2)(false)},
+                {name: '2,逆', func: rotateRule(2)(true)},
+                {name: '1,顺', func: rotateRule(3)(false)},
+                {name: '1,逆', func: rotateRule(3)(true)}
+            ]
+            return rules;
+        }
+
+        function run(target){
+            var rules = initRule();
+            var done = '001111-110011-111100';
+            var cache = {
+                [done]: {parent: null}
+            };
+            return step(cache, [done], target, rules);
+        }
+
+
+        function step(cache, values, target, rules){
+            var nextStepValues = [];
+            for(let index = 0; index < values.length; index++){
+                let value = values[index];
+                for (let i = 0; i < rules.length; i++){
+                    var rule = rules[i];
+                    var next = rule.func(value);
+                    if (!cache[next]){
+                        cache[next] = {
+                            parent: value,
+                            step: rule.name
+                        }
+                        nextStepValues.push(next);
+                        if (next === target){
+                            console.log('找到了');
+                            var chains = [];
+                            print(chains, cache, target);
+                            return chains.join('<br>');
+                        }
+                    }
+                }
+            }
+            
+            if (nextStepValues.length > 0){
+                return step(cache, nextStepValues, target, rules)
+            }
+        }
+        function print(chains, cache, target){
+            var node = cache[target];
+            if (node.parent){
+                chains.push(node.step);
+                print(chains, cache, node.parent)
+            }
+        }
+        
+        document.getElementById('go').addEventListener('click', function(){
+            var source = document.getElementById('source').value.trim();
+            var result = run(source);
+            document.getElementById('result').innerHTML = result;
+        })
+
+        document.getElementById('result').innerHTML = run('101110-010101-001010');
+    </script>
+</body>
+</html>
