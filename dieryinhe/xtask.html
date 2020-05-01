@@ -455,22 +455,37 @@
             $(this).toggleClass('red');
         })
         $('#btn1-1').on('click', function(){
+            $('#task1-1').text('');
             var res = [];
             for(var i = 1; i <= 8; i++){
                 res.push($(`#t11p${i}`).hasClass('red') ? '1' : '0');
-                var result = task1.run(4, 2, res.join(''));
-                $('#task1-1').text(result);
+                var source = res.join('');
+                if (source === '11111111'){
+                    alert(`'X机构的机密委托 - 点阵破解', 已经是最终结果了, 不要玩我.`);
+                }
+                else{
+                    var result = task1.run(4, 2, res.join(''));
+                    $('#task1-1').text(result);
+                }
             }
         })
         $('#btn1-2').on('click', function(){
+            $('#task1-2').text('');
             var res = [];
             for(var i = 1; i <= 9; i++){
                 res.push($(`#t12p${i}`).hasClass('red') ? '1' : '0');
-                var result = task1.run(3, 3, res.join(''));
-                $('#task1-2').text(result);
+                var source = res.join('');
+                if (source === '111111111'){
+                    alert(`'X机构的机密委托 - 点阵破解', 已经是最终结果了, 不要玩我.`);
+                }
+                else{
+                    var result = task1.run(3, 3, source);
+                    $('#task1-2').text(result);
+                }
             }
         })
         $('#btn2').on('click', function(){
+            $('#task2').text('');
             var res = [
                 $('#t2p3').hasClass('red') ? '1' : '0',
                 $('#t2p7').hasClass('red') ? '1' : '0',
@@ -493,9 +508,13 @@
                 $('#t2p4').hasClass('red') ? '1' : '0',
                 $('#t2p1').hasClass('red') ? '1' : '0',
             ];
-            console.log(res.join(''))
-            var result = task2.run(res.join(''));
-            $('#task2').html(result);
+            if (res.filter(it => it === '1').length !==6){
+                alert(`'X机构的机密委托 - 圆圈破解', 先要保证有6个红点.`);
+            }
+            else{
+                var result = task2.run(res.join(''));
+                $('#task2').html(result);
+            }
         })
     </script>
 </body>
