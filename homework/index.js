@@ -14,9 +14,10 @@ $(function(){
                 topic.push(`${i} - ${j} =`);
             }
         }
-        // 20-1 20-9
+        // 10(20)-1 10(20)-9
         for(var i = 1; i <= 9; i++){
-            topic.push(`20 - ${i} =`);
+            var x = generateRandomNumber(0, 1) === 0 ? 10 : 20;
+            topic.push(`${x} - ${i} =`);
         }
         // // 100-1 100-9 100-11 100-99
         // for(var i = 1; i <= 9; i++){
